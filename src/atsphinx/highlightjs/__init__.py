@@ -1,4 +1,4 @@
-"""Override code-block output for highlight.js"""
+"""Override code-block output for highlight.js."""
 from pathlib import Path
 
 from docutils import nodes
@@ -11,6 +11,7 @@ here = Path(__file__).parent
 
 
 def register_ext_static(app: Sphinx, config: Config):
+    """Use packages' static folder in Sphinx."""
     if not hasattr(config, "html_static_path"):
         config.html_static_path = []
     config.html_static_path += [str(here / "_static")]
@@ -18,26 +19,33 @@ def register_ext_static(app: Sphinx, config: Config):
 
 def register_highlightjs(app: Sphinx):
     """Append static contents to highlight by highlight.js."""
-    app.builder.add_css_file("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css")
+    app.builder.add_css_file(
+        "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css"  # noqa: E501
+    )
     app.builder.add_css_file("highlight.css")
-    app.builder.add_js_file("https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js")
+    app.builder.add_js_file(
+        "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"  # noqa: E501
+    )
     app.builder.add_js_file("highlight.js")
 
 
-def visit_literal_block(self: SphinxTranslator, node: nodes.literal_block):
+def visit_literal_block(
+    self: SphinxTranslator, node: nodes.literal_block
+):  # noqa: D103
     lang = node["language"]
     code = node.rawsource
     if "hl_lines" in node["highlight_args"]:
         splitted = node.rawsource.split("\n")
         code = "\n".join(
-            splitted[line-1]
-            for line in node["highlight_args"]["hl_lines"]
+            splitted[line - 1] for line in node["highlight_args"]["hl_lines"]
         )
     self.body.append(f'<pre><code class="language-{lang}">{code}</code></pre>')
     raise nodes.SkipNode
 
 
-def depart_literal_block(self: SphinxTranslator, node: nodes.literal_block):
+def depart_literal_block(
+    self: SphinxTranslator, node: nodes.literal_block
+):  # noqa: D103
     pass
 
 
