@@ -5,19 +5,39 @@ atsphinx-highlightjs
 Overview
 ========
 
-.. todo:: Write it
+Sphinx uses `Pygments <https://pygments.org/>`_ to hilight code syntax.
+
+This extension overrides behavior of highlighting of code for using `highlight.js <https://highlightjs.org/>`_.
 
 Installation
 ============
 
-.. todo:: Write it
+You can install from PyPI.
+
+.. code:: console
+
+   pip install atsphinx-highlightjs
 
 Usage
 =====
 
-.. todo:: Write it
+Basic usage
+-----------
+
+When you set extension into your ``conf.py`` of documentation,
+builder changes behaviors of code highlightings.
+
+.. code:: python
+
+   # Your conf.py
+   extensions = [
+       "atsphinx.highlightjs",
+   ]
+
+Please see HTML source, this includes only ``<pre><code>`` element only
+(if using Pygments, it renders parts of contents).
 
 Configuration
 =============
 
-.. todo:: Write it
+.. note:: Not yet exists.

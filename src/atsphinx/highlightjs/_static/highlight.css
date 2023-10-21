@@ -1,0 +1,6 @@
+/**
+ * Reset pre style for Pygments in Sphinx.
+ */
+pre:has(code) {
+  padding: 0px;
+}

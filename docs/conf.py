@@ -9,7 +9,7 @@ release = __version__
 
 # -- General configuration
 extensions = [
-    "sphinx.ext.todo",
+    "atsphinx.highlightjs",
 ]
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
@@ -17,3 +17,5 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # -- Options for HTML output
 html_theme = "alabaster"
 html_static_path = ["_static"]
+
+# -- Options for extensions
