@@ -7,7 +7,7 @@ from sphinx.config import Config
 from sphinx.util import logging
 from sphinx.util.docutils import SphinxTranslator
 
-__version__ = "0.0.0"
+__version__ = "0.1.0"
 
 here = Path(__file__).parent
 logger = logging.getLogger(__name__)

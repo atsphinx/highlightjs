@@ -2,9 +2,14 @@
 Change logs
 ===========
 
-v0.0.1
+v0.1.0
 ======
 
 :date: 2023-10-21
 
 First release.
+
+Features
+--------
+
+* Small extension to override behavior of code-block and literalinclude.
