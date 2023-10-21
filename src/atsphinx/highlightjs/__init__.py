@@ -4,10 +4,13 @@ from pathlib import Path
 from docutils import nodes
 from sphinx.application import Sphinx
 from sphinx.config import Config
+from sphinx.util import logging
 from sphinx.util.docutils import SphinxTranslator
 
 __version__ = "0.0.0"
+
 here = Path(__file__).parent
+logger = logging.getLogger(__name__)
 
 
 def register_ext_static(app: Sphinx, config: Config):
@@ -18,7 +21,13 @@ def register_ext_static(app: Sphinx, config: Config):
 
 
 def register_highlightjs(app: Sphinx):
-    """Append static contents to highlight by highlight.js."""
+    """Append static contents to highlight by highlight.js.
+
+    It works only html-style builder.
+    """
+    if app.builder.format != "html":
+        logger.info("Builder does not generate HTML files. Skip proc of it.")
+        return
     app.builder.add_css_file(
         "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css"  # noqa: E501
     )
