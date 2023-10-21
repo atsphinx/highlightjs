@@ -27,12 +27,9 @@ Basic usage
 When you set extension into your ``conf.py`` of documentation,
 builder changes behaviors of code highlightings.
 
-.. code:: python
-
-   # Your conf.py
-   extensions = [
-       "atsphinx.highlightjs",
-   ]
+.. literalinclude:: conf.py
+   :emphasize-lines: 11-13
+   :language: python
 
 Please see HTML source, this includes only ``<pre><code>`` element only
 (if using Pygments, it renders parts of contents).

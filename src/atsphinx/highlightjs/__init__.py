@@ -26,11 +26,19 @@ def register_highlightjs(app: Sphinx):
 
 def visit_literal_block(self: SphinxTranslator, node: nodes.literal_block):
     lang = node["language"]
-    self.body.append(f'<pre><code class="language-{lang}">')
+    code = node.rawsource
+    if "hl_lines" in node["highlight_args"]:
+        splitted = node.rawsource.split("\n")
+        code = "\n".join(
+            splitted[line-1]
+            for line in node["highlight_args"]["hl_lines"]
+        )
+    self.body.append(f'<pre><code class="language-{lang}">{code}</code></pre>')
+    raise nodes.SkipNode
 
 
 def depart_literal_block(self: SphinxTranslator, node: nodes.literal_block):
-    self.body.append("</code></pre>")
+    pass
 
 
 def setup(app: Sphinx):  # noqa: D103
